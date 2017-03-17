@@ -1,0 +1,53 @@
+<html>
+<head>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script>
+
+  var bg = new Image();
+bg.src = "https://images.pexels.com/photos/30773/pexels-photo-30773.jpg?h=350&auto=compress&cs=tinysrgb";
+function initCanvas(){
+    var ctx = document.getElementById('my_canvas').getContext('2d');
+    var cW = ctx.canvas.width, cH = ctx.canvas.height;
+	
+    function Background(){
+        this.x = 0, this.y = 0, this.w = bg.width, this.h = bg.height;
+        this.render = function(){
+            ctx.drawImage(bg, this.x--, 0);
+            if(this.x <= -499){
+                this.x = 0;
+            }
+        }
+    }
+    var background = new Background();
+	
+    function animate(){
+        ctx.save();
+        ctx.clearRect(0, 0, cW, cH);
+        // Start drawing here
+        background.render();
+        ctx.fillStyle = "orange";
+        ctx.fillRect(100,100,50,50);
+        // End drawing here
+        ctx.restore();
+    }
+    var animateInterval = setInterval(animate, 30);
+}
+window.addEventListener('load', function(event) {
+    initCanvas();
+});
+  
+</script>
+</head>
+<body>
+  
+  <h3 style="text-align: center">Canvas | Animated Background Layers</h3>
+  
+<div id="canvas_container">
+  <canvas id="my_canvas" width="800" height="300"></canvas></div>
+
+  <div>
+    <h5 style="text-align: center"><a href="http://www.eleftheriabatsou.com" target="_blank">Eleftheria Batsou</a> | <a href="http://codepen.io/EleftheriaBatsou" target="_blank">Projects</a></h5>
+  </div> <!-- end footer -->
+  
+</body>  
+</html>
